@@ -100,8 +100,8 @@ def human_float(value, significant=3, truncate_small=None, significant_zeros=Fal
     """
     Return a string representing a float with human friendly significant digits.
     Switches to scientific notation for too large/small numbers.
-    If `truncate_small`, then leading zeros of numbers < 1 are counted as 
-    significant. If not `significant_zeros`, trailing unnecessary zeros are 
+    If `truncate_small`, then leading zeros of numbers < 1 are counted as
+    significant. If not `significant_zeros`, trailing unnecessary zeros are
     stripped.
     """
     if value == 0:
@@ -676,12 +676,7 @@ def check_output(args, valid_return_codes=(0,), timeout=600, dots=True,
 
     if valid_return_codes is not None and retcode not in valid_return_codes:
         header = 'Error running {0}'.format(' '.join(args))
-        if display_error:
-            if log.is_debug_enabled():
-                # Output was already printed
-                log.error(header)
-            else:
-                log.error(get_content(header))
+        log.error(get_content(header))
         raise ProcessError(args, retcode, stdout, stderr)
 
     if return_stderr:
