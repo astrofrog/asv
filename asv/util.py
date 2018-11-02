@@ -508,6 +508,10 @@ def check_output(args, valid_return_codes=(0,), timeout=600, dots=True,
             # condition in setting the process group vs. calls to os.killpg
             kwargs['preexec_fn'] = lambda: os.setpgid(0, 0)
 
+    if len(args) > 0 and args[0].endswith('bin/python'):
+        args.insert(1, '-X')
+        args.insert(2, 'faulthandler')
+
     proc = subprocess.Popen(args, **kwargs)
 
     if return_popen:
