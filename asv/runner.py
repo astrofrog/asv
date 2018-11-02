@@ -671,7 +671,7 @@ class Spawner(object):
             [BENCHMARK_RUN_SCRIPT, 'setup_cache',
              os.path.abspath(self.benchmark_dir),
              benchmark_id],
-            dots=False, display_error=False,
+            dots=False, display_error=True,
             return_stderr=True, valid_return_codes=None,
             redirect_stderr=True,
             cwd=cache_dir, timeout=timeout)
@@ -687,7 +687,7 @@ class Spawner(object):
             [BENCHMARK_RUN_SCRIPT, 'run', os.path.abspath(self.benchmark_dir),
              name, params_str, profile_path, result_file_name],
             dots=False, timeout=timeout,
-            display_error=False, return_stderr=True, redirect_stderr=True,
+            display_error=True, return_stderr=True, redirect_stderr=True,
             valid_return_codes=None, cwd=cwd)
         return out, errcode
 

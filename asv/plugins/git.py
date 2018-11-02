@@ -92,17 +92,17 @@ class Git(Repo):
         def checkout_existing(display_error):
             # Deinit fails if no submodules, so ignore its failure
             self._run_git(['submodule', 'deinit', '-f', '.'],
-                          cwd=path, display_error=False, valid_return_codes=None)
+                          cwd=path, display_error=True, valid_return_codes=None)
             self._run_git(['checkout', '-f', commit_hash],
-                          cwd=path, display_error=display_error)
+                          cwd=path, display_error=True)
             self._run_git(['clean', '-fdx'],
-                          cwd=path, display_error=display_error)
+                          cwd=path, display_error=True)
             self._run_git(['submodule', 'update', '--init', '--recursive'],
-                          cwd=path, display_error=display_error)
+                          cwd=path, display_error=True)
 
         if os.path.isdir(path):
             try:
-                checkout_existing(display_error=False)
+                checkout_existing(display_error=True)
             except util.ProcessError:
                 # Remove and try to re-clone
                 util.long_path_rmtree(path)
@@ -133,7 +133,7 @@ class Git(Repo):
 
         try:
             return self._run_git(['rev-parse', lookup_name],
-                                 display_error=False,
+                                 display_error=True,
                                  dots=False).strip().split()[0]
         except util.ProcessError as err:
             if err.stdout.strip() == lookup_name:
@@ -149,7 +149,7 @@ class Git(Repo):
             name = self._run_git(["name-rev", "--name-only",
                                   "--exclude=remotes/*",
                                   "--no-undefined", commit],
-                                 display_error=False).strip()
+                                 display_error=True).strip()
             if not name:
                 return None
         except util.ProcessError as err:

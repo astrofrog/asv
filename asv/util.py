@@ -365,7 +365,7 @@ def check_call(args, valid_return_codes=(0,), timeout=600, dots=True,
 
     check_output(
         args, valid_return_codes=valid_return_codes, timeout=timeout,
-        dots=dots, display_error=display_error, shell=shell, env=env,
+        dots=dots, display_error=True, shell=shell, env=env,
         cwd=cwd)
 
 
