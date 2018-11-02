@@ -674,6 +674,11 @@ def check_output(args, valid_return_codes=(0,), timeout=600, dots=True,
     else:
         retcode = proc.returncode
 
+    print('args', args)
+    print('retcode', retcode, TIMEOUT_RETCODE)
+    print('stderr', stderr)
+    print('stdout', stdout)
+
     if valid_return_codes is not None and retcode not in valid_return_codes:
         header = 'Error running {0}'.format(' '.join(args))
         log.error(get_content(header))
