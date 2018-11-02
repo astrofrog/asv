@@ -7,6 +7,9 @@ from __future__ import (absolute_import, division, print_function,
 import os
 import sys
 
+import faulthandler
+faulthandler.enable()
+
 # This __version__ assignment is parsed by setup.py; keep it in this form.
 # Development versions end with ".dev" (suffix is added below).
 __version__ = "0.4.dev"
